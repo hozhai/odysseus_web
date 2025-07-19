@@ -1,75 +1,35 @@
-# Nuxt Minimal Starter
+<h1 align="center"> Odysseus Web </h1>
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+## 🔨 Building
 
-## Setup
+Clone the repository
 
-Make sure to install dependencies:
-
-```bash
-# npm
-npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
+```sh
+git clone https://github.com/hozhai/odysseus_web.git
+cd odysseus_web
 ```
 
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
+```sh
+bun i
+bun dev
 ```
 
-## Production
+## 🪪 License
 
-Build the application for production:
+This project is licensed under the GNU Affero General Public License v3.0 - see the [LICENSE](LICENSE.md) file for details.
 
-```bash
-# npm
-npm run build
+This means you can:
 
-# pnpm
-pnpm build
+- ✅ Use, modify, and distribute the code
+- ✅ Use it commercially (with conditions)
+- ✅ Fork and create derivatives
 
-# yarn
-yarn build
+But you must:
 
-# bun
-bun run build
-```
+- 📝 Keep the same license
+- 📝 Provide source code with any distribution
+- 📝 Make source available if running as a network service
 
-Locally preview production build:
+## ✨ Contributing
 
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+Contributions are welcome! By contributing, you agree that your contributions will be licensed under the same AGPL-3.0 license. Feel free to open issues or pull requests. You're welcome to join the [Discord](https://discord.gg/JwRCsJSH85) as well.
