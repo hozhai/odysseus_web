@@ -8,12 +8,13 @@ useSeoMeta({
 
 <template>
   <div>
-    <section class="flex relative justify-center items-center h-screen p-20 shadow-background overflow-hidden">
-      <ClientOnly class="w-2/3">
-        <BlurReveal :delay="0.2" :duration="0.75" class="p-8">
-          <h2 class="text-2xl tracking-tighter">Introducing Odysseus...</h2>
+    <section class="flex relative mx-24 justify-center items-center h-screen p-20 shadow-background overflow-hidden">
+      <ClientOnly>
+        <BlurReveal :delay="0.4" :duration="0.75" class="p-8">
+          <h2 class="text-2xl tracking-tighter italic">Introducing Odysseus...</h2>
           <h1 class="text-pretty font-bold text-6xl">
-            The only <span class="text-sky-300">AO</span> bot you'll <span class="underline">need</span>.
+            The only <span class="text-sky-300">Arcane Odyssey</span> bot you'll <i>ever</i> <span
+              class="underline">need</span>.
           </h1>
           <p class="mt-2 w-2/3">
             Odysseus is an utility multi-purpose bot centered around Arcane Odyssey, bringing you commands such as
@@ -24,16 +25,7 @@ useSeoMeta({
           </NuxtLink>
         </BlurReveal>
       </ClientOnly>
-      <ClientOnly>
-        <BlurReveal :delay="0.4" :duration="0.75" class="relative">
-          <div class="absolute hover:z-10">
-            <NuxtImg src="showcase_1.png" class="rounded-4xl border-1 border-black" />
-          </div>
-          <div class="mt-20 ml-10">
-            <NuxtImg src="showcase_2.png" class="rounded-4xl border-1 border-black" />
-          </div>
-        </BlurReveal>
-      </ClientOnly>
+      <AsciiArt />
       <UiParticlesBg class="absolute inset-0 pointer-events-none" :quantity="100" :ease="100" color="#FFF"
         :staticity="10" refresh />
       <ClientOnly class="absolute bottom-20 left-1/2 -translate-x-1/2">
@@ -41,6 +33,10 @@ useSeoMeta({
           <Icon name="lucide:arrow-down-to-dot" class="text-white" />
         </BlurReveal>
       </ClientOnly>
+    </section>
+    <section class="mx-20">
+      <h1 class="text-3xl font-bold">&gt; Why <span class="text-sky-300">Odysseus</span>?</h1>
+      <Bento class="mt-10" />
     </section>
     <section class="mt-10">
       <h1 class="text-center text-5xl font-bold">Used by many</h1>
