@@ -1,2 +1,4 @@
-compatibility_flags = ["nodejs_compat"]
+name = "odysseus"
+pages_build_output_dir = "./.svelte-kit/cloudflare"
 compatibility_date = "2026-05-17"
+compatibility_flags = ["nodejs_compat"]
