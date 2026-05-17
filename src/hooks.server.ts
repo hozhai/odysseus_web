@@ -7,7 +7,19 @@ export async function handle({ event, resolve }) {
 		headers: event.request.headers
 	});
 
-	event.locals.session = session?.session ?? null;
+	if (session?.session && session.user) {
+		event.locals.session = {
+			user: {
+				id: session.user.id,
+				email: session.user.email,
+				name: session.user.name ?? undefined,
+				image: session.user.image ?? undefined
+			},
+			expiresAt: session.session.expiresAt
+		};
+	} else {
+		event.locals.session = null;
+	}
 
 	return svelteKitHandler({ event, resolve, auth, building });
 }

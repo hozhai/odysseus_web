@@ -34,6 +34,8 @@
 			<p>Your account is logged in, but you do not have admin permissions.</p>
 			<p>Your email: {data.session.user?.email}</p>
 		</div>
+
+		<button type="button" onclick={signOut}>Sign out</button>
 	{/if}
 
 	<!-- Show if admin -->
@@ -74,6 +76,8 @@
 					</ul>
 				{/if}
 			</section>
+
+			<button type="button" onclick={signOut}>Sign out</button>
 		</div>
 	{/if}
 </div>
