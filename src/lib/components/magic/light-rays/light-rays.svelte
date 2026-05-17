@@ -34,9 +34,6 @@
 		...props
 	}: LightRaysProps = $props();
 
-	let rays = $state<LightRay[]>([]);
-	let cycleDuration = $derived(Math.max(speed, 0.1));
-
 	let createRays = (count: number, cycle: number): LightRay[] => {
 		if (count <= 0) return [];
 
@@ -61,14 +58,12 @@
 			};
 		});
 	};
+	let cycleDuration = $derived(Math.max(speed, 0.1));
+	let rays = $derived(createRays(count, cycleDuration));
 
 	// onMount(() => {
 	// 	rays = createRays(count, cycleDuration);
 	// });
-
-	$effect(() => {
-		rays = createRays(count, cycleDuration);
-	});
 </script>
 
 <div

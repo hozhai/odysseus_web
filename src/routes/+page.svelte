@@ -6,7 +6,7 @@
 	import BlurReveal from '@/components/spell/blur-reveal/blur-reveal.svelte';
 	import Icon from '@iconify/svelte';
 
-	import Showcase1 from '$lib/assets/images/showcase_1.png';
+	import Showcase1 from '$lib/assets/images/showcase_1.png?enhanced';
 </script>
 
 <svelte:head>
