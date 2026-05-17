@@ -1,6 +1,6 @@
 <script lang="ts">
 	import './layout.css';
-	import favicon from '$lib/assets/favicon.svg';
+	import favicon from '$lib/assets/favicon.ico';
 	import { ModeWatcher } from 'mode-watcher';
 
 	let { children } = $props();
@@ -13,3 +13,7 @@
 <main>
 	{@render children()}
 </main>
+
+<footer class="bg-primary-foreground p-4 text-center font-serif">
+	<p>Odysseus - AGPL v3 - {new Date().getFullYear()}</p>
+</footer>

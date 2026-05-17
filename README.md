@@ -1,42 +1,35 @@
-# sv
+<h1 align="center"> Odysseus Web </h1>
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+## 🔨 Building
 
-## Creating a project
-
-If you're seeing this, you've probably already done this step. Congrats!
+Clone the repository
 
 ```sh
-# create a new project
-npx sv create my-app
+git clone https://github.com/hozhai/odysseus_web.git
+cd odysseus_web
 ```
-
-To recreate this project with the same configuration:
 
 ```sh
-# recreate this project
-bun x sv@0.15.3 create --template minimal --types ts --add prettier eslint tailwindcss="plugins:none" --install bun .
+bun i
+bun dev
 ```
 
-## Developing
+## 🪪 License
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+This project is licensed under the GNU Affero General Public License v3.0 - see the [LICENSE](LICENSE.md) file for details.
 
-```sh
-npm run dev
+This means you can:
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+- ✅ Use, modify, and distribute the code
+- ✅ Use it commercially (with conditions)
+- ✅ Fork and create derivatives
 
-## Building
+But you must:
 
-To create a production version of your app:
+- 📝 Keep the same license
+- 📝 Provide source code with any distribution
+- 📝 Make source available if running as a network service
 
-```sh
-npm run build
-```
+## ✨ Contributing
 
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+Contributions are welcome! By contributing, you agree that your contributions will be licensed under the same AGPL-3.0 license. Feel free to open issues or pull requests. You're welcome to join the [Discord](https://discord.gg/JwRCsJSH85) as well.
