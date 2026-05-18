@@ -10,18 +10,18 @@ export const load: PageServerLoad = async ({ locals }) => {
 	const authorized = isAdmin(userEmail);
 
 	if (authorized) {
-		const entries = await db.select().from(botData);
+		const data = await db.select().from(botData).where(eq(botData.id, 1));
 		return {
 			session,
 			authorized: true,
-			entries
+			botData: data[0] || null
 		};
 	}
 
 	return {
 		session,
 		authorized: false,
-		entries: []
+		botData: null
 	};
 };
 
@@ -35,25 +35,40 @@ export const actions = {
 		}
 
 		const formData = await request.formData();
-		const file = formData.get('file') as File | null;
-		const name = formData.get('name') as string | null;
+		const itemsFile = formData.get('items') as File | null;
+		const weaponsFile = formData.get('weapons') as File | null;
+		const magicsFile = formData.get('magics') as File | null;
 
-		if (!file) {
-			return { error: 'No file provided' };
+		// At least one file must be provided
+		if (!itemsFile && !weaponsFile && !magicsFile) {
+			return { error: 'Please upload at least one JSON file' };
 		}
 
-		if (!name || name.trim() === '') {
-			return { error: 'No name provided' };
-		}
+		let items: unknown = null;
+		let weapons: unknown = null;
+		let magics: unknown = null;
 
-		if (!file.name.endsWith('.json')) {
-			return { error: 'File must be a .json file' };
-		}
-
-		let jsonContent: unknown;
 		try {
-			const fileText = await file.text();
-			jsonContent = JSON.parse(fileText);
+			if (itemsFile && itemsFile.size > 0) {
+				if (!itemsFile.name.endsWith('.json')) {
+					return { error: 'Items file must be a .json file' };
+				}
+				items = JSON.parse(await itemsFile.text());
+			}
+
+			if (weaponsFile && weaponsFile.size > 0) {
+				if (!weaponsFile.name.endsWith('.json')) {
+					return { error: 'Weapons file must be a .json file' };
+				}
+				weapons = JSON.parse(await weaponsFile.text());
+			}
+
+			if (magicsFile && magicsFile.size > 0) {
+				if (!magicsFile.name.endsWith('.json')) {
+					return { error: 'Magics file must be a .json file' };
+				}
+				magics = JSON.parse(await magicsFile.text());
+			}
 		} catch (err) {
 			return { error: 'Invalid JSON in file: ' + err };
 		}
@@ -63,55 +78,39 @@ export const actions = {
 				return { error: 'No session' };
 			}
 
-			const newEntry = await db
-				.insert(botData)
-				.values({
-					id: crypto.randomUUID(),
-					name: name.trim(),
-					jsonContent,
+			// Check if row exists
+			const existing = await db.select().from(botData).where(eq(botData.id, 1));
+
+			if (existing.length > 0) {
+				// Update existing row
+				await db
+					.update(botData)
+					.set({
+						items: items || existing[0].items,
+						weapons: weapons || existing[0].weapons,
+						magics: magics || existing[0].magics,
+						uploadedBy: session.user.id,
+						updatedAt: new Date()
+					})
+					.where(eq(botData.id, 1));
+			} else {
+				// Insert new row
+				await db.insert(botData).values({
+					id: 1,
+					items,
+					weapons,
+					magics,
 					uploadedBy: session.user.id
-				})
-				.returning();
-
-			return {
-				success: true,
-				message: `Uploaded "${name}"`,
-				entry: newEntry[0]
-			};
-		} catch (err) {
-			const errorMessage = err instanceof Error ? err.message : String(err);
-			// This catches duplicate name errors
-			if (errorMessage.includes('unique')) {
-				return { error: `A dataset named "${name}" already exists` };
+				});
 			}
-			return { error: 'Database error: ' + errorMessage };
-		}
-	},
 
-	delete: async ({ request, locals }) => {
-		const session = locals.session;
-		const userEmail = session?.user?.email;
-
-		if (!isAdmin(userEmail)) {
-			return { error: 'Unauthorized' };
-		}
-
-		const formData = await request.formData();
-		const id = formData.get('id') as string | null;
-
-		if (!id) {
-			return { error: 'No ID provided' };
-		}
-
-		try {
-			await db.delete(botData).where(eq(botData.id, id));
 			return {
 				success: true,
-				message: 'Dataset deleted'
+				message: 'Bot data updated successfully'
 			};
 		} catch (err) {
 			const errorMessage = err instanceof Error ? err.message : String(err);
-			return { error: 'Failed to delete: ' + errorMessage };
+			return { error: 'Database error: ' + errorMessage };
 		}
 	}
 };

@@ -46,34 +46,48 @@
 
 			<!-- Upload form -->
 			<section>
-				<h2>Upload New JSON Data</h2>
+				<h2>Upload Bot Data Files</h2>
 				<form method="POST" action="?/upload" enctype="multipart/form-data">
-					<input type="text" name="name" placeholder="Data name (e.g., item-prices)" required />
-					<input type="file" name="file" accept=".json" required />
+					<div style="margin-bottom: 1rem;">
+						<label for="items">Items JSON:</label>
+						<input type="file" id="items" name="items" accept=".json" />
+					</div>
+					<div style="margin-bottom: 1rem;">
+						<label for="weapons">Weapons JSON:</label>
+						<input type="file" id="weapons" name="weapons" accept=".json" />
+					</div>
+					<div style="margin-bottom: 1rem;">
+						<label for="magics">Magics JSON:</label>
+						<input type="file" id="magics" name="magics" accept=".json" />
+					</div>
 					<button type="submit">Upload</button>
 				</form>
 			</section>
 
-			<!-- List of uploaded data -->
+			<!-- Current data status -->
 			<section>
-				<h2>Uploaded Data</h2>
-				{#if data.entries?.length === 0}
+				<h2>Current Bot Data</h2>
+				{#if !data.botData}
 					<p>No data uploaded yet.</p>
 				{:else}
-					<ul>
-						{#each data.entries as entry (entry.id)}
-							<li>
-								<strong>{entry.name}</strong>
-								<br />
-								Updated: {new Date(entry.updatedAt).toLocaleString()}
-								<br />
-								<form method="POST" action="?/delete" style="display: inline;">
-									<input type="hidden" name="id" value={entry.id} />
-									<button type="submit">Delete</button>
-								</form>
-							</li>
-						{/each}
-					</ul>
+					<div>
+						<p>
+							<strong>Last Updated:</strong>
+							{new Date(data.botData.updatedAt).toLocaleString()}
+						</p>
+						<p>
+							<strong>Items:</strong>
+							{data.botData.items ? 'Loaded' : 'Not loaded'}
+						</p>
+						<p>
+							<strong>Weapons:</strong>
+							{data.botData.weapons ? 'Loaded' : 'Not loaded'}
+						</p>
+						<p>
+							<strong>Magics:</strong>
+							{data.botData.magics ? 'Loaded' : 'Not loaded'}
+						</p>
+					</div>
 				{/if}
 			</section>
 
@@ -108,15 +122,9 @@
 		font-size: 1rem;
 	}
 
-	ul {
-		list-style: none;
-		padding: 0;
-	}
-
-	li {
-		padding: 1rem;
-		margin-bottom: 0.5rem;
-		border: 1px solid #ddd;
-		border-radius: 4px;
+	label {
+		display: block;
+		margin-bottom: 0.25rem;
+		font-weight: 500;
 	}
 </style>
