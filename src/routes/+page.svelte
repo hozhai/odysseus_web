@@ -74,8 +74,9 @@
 			the bot (commands such as /item, /magic, /build, and /weapon require maintenance each time the balance
 			team makes a change), which made it nearly impossible to keep the bot running smoothly.
 			<br /><br />
-			What makes this time different? Nothing, really. I just want to give this concept another chance.
-			Oh, and optimization update means I can finally enjoy the game!!!!!
+			What makes this time different? Nothing, really, except the fact that I'm not going to vibecode
+			half the project. I also just want to give this concept another chance. Oh, and optimization update
+			means I can finally enjoy the game!!!!!
 		</p>
 		<enhanced:img src={Showcase1} class="rounded-xl" alt="Showcase of the /item command" />
 	</div>
