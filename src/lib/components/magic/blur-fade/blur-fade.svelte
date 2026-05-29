@@ -32,7 +32,7 @@
 		triggerOnView = true,
 		inViewMargin = "-50px",
 		blur = "6px",
-		once = true,
+		once = true
 	}: BlurFadeProps = $props();
 
 	let containerRef: HTMLDivElement | null = $state(null);
@@ -42,7 +42,7 @@
 			({
 				once,
 				amount: 0.1,
-				margin: inViewMargin,
+				margin: inViewMargin
 			}) as any
 	);
 
@@ -52,13 +52,13 @@
 				[direction === "left" || direction === "right" ? "x" : "y"]:
 					direction === "right" || direction === "down" ? -offset : offset,
 				opacity: 0,
-				filter: `blur(${blur})`,
+				filter: `blur(${blur})`
 			},
 			visible: {
 				[direction === "left" || direction === "right" ? "x" : "y"]: 0,
 				opacity: 1,
-				filter: `blur(0px)`,
-			},
+				filter: `blur(0px)`
+			}
 		} as Variants;
 	});
 
@@ -76,7 +76,7 @@
 			transition={{
 				delay: 0.04 + delay,
 				duration,
-				ease: "easeOut",
+				ease: "easeOut"
 			}}
 			class={cn(className)}
 		>
