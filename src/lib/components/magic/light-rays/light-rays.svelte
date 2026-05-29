@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { motion } from "motion-sv";
-	import { cn } from "$lib/utils";
+	import { motion } from 'motion-sv';
+	import { cn } from '$lib/utils';
 
 	interface LightRay {
 		id: string;
@@ -26,16 +26,13 @@
 	let {
 		class: className,
 		count = 7,
-		color = "rgba(160, 210, 255, 0.2)",
+		color = 'rgba(160, 210, 255, 0.2)',
 		blur = 36,
 		speed = 14,
-		length = "70vh",
+		length = '70vh',
 		style,
 		...props
 	}: LightRaysProps = $props();
-
-	let rays = $state<LightRay[]>([]);
-	let cycleDuration = $derived(Math.max(speed, 0.1));
 
 	let createRays = (count: number, cycle: number): LightRay[] => {
 		if (count <= 0) return [];
@@ -61,19 +58,17 @@
 			};
 		});
 	};
+	let cycleDuration = $derived(Math.max(speed, 0.1));
+	let rays = $derived(createRays(count, cycleDuration));
 
 	// onMount(() => {
 	// 	rays = createRays(count, cycleDuration);
 	// });
-
-	$effect(() => {
-		rays = createRays(count, cycleDuration);
-	});
 </script>
 
 <div
 	class={cn(
-		"pointer-events-none absolute inset-0 isolate overflow-hidden rounded-[inherit]",
+		'pointer-events-none absolute inset-0 isolate overflow-hidden rounded-[inherit]',
 		className
 	)}
 	style="--light-rays-color: {color}; --light-rays-blur: {blur}px; --light-rays-length: {length}; {style ||
@@ -103,7 +98,7 @@
 				transition={{
 					duration: ray.duration,
 					repeat: Infinity,
-					ease: "easeInOut",
+					ease: 'easeInOut',
 					delay: ray.delay,
 					repeatDelay: ray.duration * 0.1
 				}}

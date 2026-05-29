@@ -1,13 +1,12 @@
 <script lang="ts">
-	import { Backlight } from "@/components/magic/backlight";
-	import BlurFade from "@/components/magic/blur-fade/blur-fade.svelte";
-	import { InteractiveHoverButton } from "@/components/magic/interactive-hover-button";
-	import { LightRays } from "@/components/magic/light-rays";
-	import BlurReveal from "@/components/spell/blur-reveal/blur-reveal.svelte";
-	import { motion } from "motion-sv";
-	import Icon from "@iconify/svelte";
+	import { Backlight } from '@/components/magic/backlight';
+	import BlurFade from '@/components/magic/blur-fade/blur-fade.svelte';
+	import { InteractiveHoverButton } from '@/components/magic/interactive-hover-button';
+	import { LightRays } from '@/components/magic/light-rays';
+	import BlurReveal from '@/components/spell/blur-reveal/blur-reveal.svelte';
+	import Icon from '@iconify/svelte';
 
-	import Showcase1 from "$lib/assets/images/showcase_1.png";
+	import Showcase1 from '$lib/assets/images/showcase_1.png?enhanced';
 </script>
 
 <svelte:head>
@@ -15,37 +14,6 @@
 </svelte:head>
 
 <section class="relative grid h-screen place-items-center">
-	<motion.div
-		initial={{
-			opacity: 0,
-			scale: 0.4
-		}}
-		animate={{
-			opacity: 1,
-			scale: 1
-		}}
-		transition={{
-			duration: 1,
-			delay: 1
-		}}
-		class="absolute top-[30%] left-[55%] h-64 w-64 rounded-full bg-blue-400/20 shadow-2xl shadow-green-200/50 blur-3xl"
-	></motion.div>
-	<motion.div
-		initial={{
-			opacity: 0,
-			scale: 0.4
-		}}
-		animate={{
-			opacity: 1,
-			scale: 1
-		}}
-		transition={{
-			duration: 0.8,
-			delay: 0.8
-		}}
-		class="absolute top-[40%] left-[45%] h-48 w-48 rounded-full bg-blue-700/20 shadow-2xl shadow-green-200/50 blur-3xl"
-	></motion.div>
-
 	<div class="text-center">
 		<h2 class="text-2xl italic">
 			<BlurReveal as="span" class="text-muted-foreground">Introducing</BlurReveal>
@@ -106,8 +74,9 @@
 			the bot (commands such as /item, /magic, /build, and /weapon require maintenance each time the balance
 			team makes a change), which made it nearly impossible to keep the bot running smoothly.
 			<br /><br />
-			What makes this time different? Nothing, really. I just want to give this concept another chance.
-			Oh, and optimization update means I can finally enjoy the game!!!!!
+			What makes this time different? Nothing, really, except the fact that I'm not going to vibecode
+			half the project. I also just want to give this concept another chance. Oh, and optimization update
+			means I can finally enjoy the game!!!!!
 		</p>
 		<enhanced:img src={Showcase1} class="rounded-xl" alt="Showcase of the /item command" />
 	</div>
