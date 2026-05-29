@@ -56,7 +56,7 @@
 		once = true,
 		letterSpacing,
 		onStart,
-		onComplete,
+		onComplete
 	}: BlurRevealProps = $props();
 
 	let MotionComponent = $derived(motion[as]);
@@ -136,7 +136,7 @@
 		observer.observe(sourceElement, {
 			childList: true,
 			subtree: true,
-			characterData: true,
+			characterData: true
 		});
 
 		return () => observer.disconnect();
@@ -176,7 +176,7 @@
 					kind: "space",
 					id: `space-${tokenIndex}`,
 					value: token,
-					index: cursor,
+					index: cursor
 				});
 
 				cursor += 1;
@@ -185,7 +185,7 @@
 
 			let characters = splitIntoCharacters(token).map((value, characterIndex) => ({
 				value,
-				index: cursor + characterIndex,
+				index: cursor + characterIndex
 			}));
 
 			cursor += characters.length;
@@ -193,7 +193,7 @@
 			renderTokens.push({
 				kind: "word",
 				id: `word-${tokenIndex}`,
-				characters,
+				characters
 			});
 		}
 
@@ -214,16 +214,16 @@
 			opacity: 0,
 			transition: {
 				staggerChildren: resolvedStagger,
-				staggerDirection: -1,
-			},
+				staggerDirection: -1
+			}
 		},
 		visible: {
 			opacity: 1,
 			transition: {
 				delayChildren: safeDelay,
-				staggerChildren: resolvedStagger,
-			},
-		},
+				staggerChildren: resolvedStagger
+			}
+		}
 	}));
 
 	let itemVariants = $derived.by<Variants>(() => ({
@@ -232,17 +232,17 @@
 			filter: "blur(12px)",
 			y: 10,
 			transition: {
-				duration: resolvedDuration,
-			},
+				duration: resolvedDuration
+			}
 		},
 		visible: {
 			opacity: 1,
 			filter: "blur(0px)",
 			y: 0,
 			transition: {
-				duration: resolvedDuration,
-			},
-		},
+				duration: resolvedDuration
+			}
+		}
 	}));
 
 	let shouldAnimate = $derived(totalUnits > 0 && trigger && isInView);
@@ -293,8 +293,7 @@
 						class="inline-block"
 						variants={itemVariants}
 						style={letterSpacingValue ? { marginRight: letterSpacingValue } : undefined}
-						onAnimationComplete={(definition) =>
-							handleUnitComplete(definition, character.index)}
+						onAnimationComplete={(definition) => handleUnitComplete(definition, character.index)}
 					>
 						{character.value}
 					</motion.span>
