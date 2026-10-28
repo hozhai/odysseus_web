@@ -1,12 +1,11 @@
 <script lang="ts">
-	import { Backlight } from '@/components/magic/backlight';
-	import BlurFade from '@/components/magic/blur-fade/blur-fade.svelte';
-	import { InteractiveHoverButton } from '@/components/magic/interactive-hover-button';
-	import { LightRays } from '@/components/magic/light-rays';
-	import BlurReveal from '@/components/spell/blur-reveal/blur-reveal.svelte';
-	import Icon from '@iconify/svelte';
+	import { Backlight } from "@/components/magic/backlight";
+	import BlurFade from "@/components/magic/blur-fade/blur-fade.svelte";
+	import { LightRays } from "@/components/magic/light-rays";
+	import BlurReveal from "@/components/spell/blur-reveal/blur-reveal.svelte";
 
-	import Showcase1 from '$lib/assets/images/showcase_1.png?enhanced';
+	import Showcase1 from "#lib/assets/images/showcase_1.png?enhanced";
+	import NoiseTexture from "#lib/components/magic/noise-texture/noise-texture.svelte";
 </script>
 
 <svelte:head>
@@ -14,39 +13,52 @@
 </svelte:head>
 
 <section class="relative grid h-screen place-items-center">
+	<NoiseTexture
+		class="absolute inset-0 mask-[radial-gradient(420px_circle_at_center,white,transparent)]"
+		noiseOpacity={1}
+	/>
+	<LightRays />
 	<div class="text-center">
-		<h2 class="text-2xl italic">
+		<h2 class="flex justify-center gap-2 font-serif text-2xl">
+			<BlurFade class="inline-block text-muted-foreground" delay={1}>~</BlurFade>
 			<BlurReveal as="span" class="text-muted-foreground">Introducing</BlurReveal>
 			<Backlight class="inline-block"
 				><BlurReveal
 					delay={0.4}
 					as="span"
-					class="bg-linear-to-tr from-blue-400 to-cyan-200 bg-clip-text font-serif
+					class="bg-linear-to-tr from-blue-400 to-cyan-200 bg-clip-text
 			text-transparent">Odysseus</BlurReveal
 				></Backlight
-			><BlurReveal delay={0.7} as="span">...</BlurReveal>
+			>
+			<BlurFade class="inline-block text-muted-foreground" delay={1.3}>~</BlurFade>
 		</h2>
-		<BlurFade delay={0.7} duration={0.7} offset={30} direction="up">
+		<BlurFade delay={0.7} duration={0.7} offset={30} direction="up" class="mt-2">
 			<h2 class="font-serif text-6xl">
 				The <i>only</i>
 				<Backlight class="inline-block text-blue-300">Arcane Odyssey</Backlight><br /> bot you'll
-				<b>ever</b> need.
+				<b><i>ever</i></b> need.
 			</h2>
 		</BlurFade>
-		<BlurFade class="mt-4 space-x-4" delay={1.2} duration={1} offset={30} direction="up">
-			<!-- <InteractiveHoverButton
-				><Icon icon="ic:baseline-discord" class="inline-block size-5" /> Add to Server</InteractiveHoverButton
-			> -->
-			<a href="#about">
-				<InteractiveHoverButton
-					><Icon icon="material-symbols:info-outline-rounded" class="inline-block size-5" /> Learn More</InteractiveHoverButton
-				>
-			</a>
-		</BlurFade>
 	</div>
-	<LightRays />
 </section>
-
+<BlurFade
+	class="absolute bottom-[calc(50%-100px)] left-1/2 -translate-x-1/2"
+	inViewMargin="1080px"
+	delay={0.8}
+>
+	<div class="h-0.5 w-lg bg-white"></div>
+</BlurFade>
+<BlurFade
+	class="absolute bottom-[calc(50%-110px)] left-1/2 -translate-x-1/2"
+	inViewMargin="1080px"
+	delay={0.9}
+>
+	<div class=" h-0.5 w-96 bg-white"></div>
+</BlurFade>
+<BlurFade class="absolute bottom-[calc(50%-120px)] left-1/2 ">
+	<div class="h-0.5 w-72 -translate-x-1/2 bg-white"></div>
+</BlurFade>
+<div class="h-lg absolute bottom-20 left-1/2 w-0.5 -translate-x-1/2 bg-white"></div>
 <section class="m-20 flex flex-col items-start justify-center" id="about">
 	<h2 class="font-serif text-4xl">
 		What is
