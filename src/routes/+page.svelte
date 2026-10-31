@@ -2,24 +2,31 @@
 	import { Backlight } from "@/components/magic/backlight";
 	import BlurFade from "@/components/magic/blur-fade/blur-fade.svelte";
 	import { LightRays } from "@/components/magic/light-rays";
+	import RotatingOmega from "@/components/RotatingOmega.svelte";
 	import BlurReveal from "@/components/spell/blur-reveal/blur-reveal.svelte";
 
 	import Showcase1 from "#lib/assets/images/showcase_1.png?enhanced";
 	import NoiseTexture from "#lib/components/magic/noise-texture/noise-texture.svelte";
+	import RippleButton from "#lib/components/magic/ripple-button/ripple-button.svelte";
+	import { Icon, Info } from "@lucide/svelte";
 </script>
 
 <svelte:head>
 	<title>Odysseus</title>
 </svelte:head>
 
-<section class="relative grid h-screen place-items-center">
+<section
+	class="col relative flex min-h-screen w-full items-center justify-center overflow-hidden px-10 pt-24 pb-12 md:px-30 md:py-0"
+>
 	<NoiseTexture
 		class="absolute inset-0 mask-[radial-gradient(420px_circle_at_center,white,transparent)]"
-		noiseOpacity={1}
+		noiseOpacity={0.7}
 	/>
 	<LightRays />
-	<div class="text-center">
-		<h2 class="flex justify-center gap-2 font-serif text-2xl">
+	<div
+		class="absolute top-1/2 left-1/2 z-20 flex w-full -translate-x-1/2 -translate-y-1/2 flex-col justify-center rounded-xl py-10 text-center md:w-[62%]"
+	>
+		<h2 class="flex justify-center gap-2 font-serif text-base sm:text-lg md:text-2xl">
 			<BlurFade class="inline-block text-muted-foreground" delay={1}>~</BlurFade>
 			<BlurReveal as="span" class="text-muted-foreground">Introducing</BlurReveal>
 			<Backlight class="inline-block"
@@ -33,32 +40,35 @@
 			<BlurFade class="inline-block text-muted-foreground" delay={1.3}>~</BlurFade>
 		</h2>
 		<BlurFade delay={0.7} duration={0.7} offset={30} direction="up" class="mt-2">
-			<h2 class="font-serif text-6xl">
+			<h2 class="font-serif text-4xl sm:text-5xl xl:text-6xl">
 				The <i>only</i>
 				<Backlight class="inline-block text-blue-300">Arcane Odyssey</Backlight><br /> bot you'll
 				<b><i>ever</i></b> need.
 			</h2>
 		</BlurFade>
+		<BlurFade
+			delay={0.9}
+			duration={0.7}
+			offset={30}
+			direction="up"
+			class="mt-4 flex justify-center"
+		>
+			<RippleButton
+				rippleColor="#93b1e3"
+				class="font-serif"
+				onclick={() => document.querySelector("#about")?.scrollIntoView()}
+			>
+				<Info class="mr-2 inline-block" /><b>LEARN MORE</b></RippleButton
+			></BlurFade
+		>
+	</div>
+	<div
+		class="absolute top-1/2 left-1/2 z-10 h-56 w-full shrink-0 -translate-x-1/2 -translate-y-1/2 sm:h-64 md:h-[min(70vh,32rem)] md:w-[38%]"
+	>
+		<RotatingOmega />
 	</div>
 </section>
-<BlurFade
-	class="absolute bottom-[calc(50%-100px)] left-1/2 -translate-x-1/2"
-	inViewMargin="1080px"
-	delay={0.8}
->
-	<div class="h-0.5 w-lg bg-white"></div>
-</BlurFade>
-<BlurFade
-	class="absolute bottom-[calc(50%-110px)] left-1/2 -translate-x-1/2"
-	inViewMargin="1080px"
-	delay={0.9}
->
-	<div class=" h-0.5 w-96 bg-white"></div>
-</BlurFade>
-<BlurFade class="absolute bottom-[calc(50%-120px)] left-1/2 ">
-	<div class="h-0.5 w-72 -translate-x-1/2 bg-white"></div>
-</BlurFade>
-<div class="h-lg absolute bottom-20 left-1/2 w-0.5 -translate-x-1/2 bg-white"></div>
+
 <section class="m-20 flex flex-col items-start justify-center" id="about">
 	<h2 class="font-serif text-4xl">
 		What is
